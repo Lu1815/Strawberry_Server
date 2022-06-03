@@ -1,0 +1,19 @@
+datasource db {
+    provider = "postgresql"
+    url = "postgres://rdpgslyuueovdh:fe2f8eafd75ee7f311144f7fabd6b57b36692ead2ae2d1a47eec0fd44c33f844@localhost:5432/d1g8421qpc8d4t"
+}
+
+generator db {
+    provider  = "prisma-client-py"
+    interface = "asyncio"
+}
+
+model User {
+    userId Int @id @default(autoincrement())
+    userName String @db.VarChar(50)
+    userPwd String @db.VarChar(50)
+    userCreation DateTime @default(now())
+
+    @@map("Users")
+    @@unique([userName], name: "User_name_key")
+}
